@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import sather from "../sathergate.jpeg";
 export function Login() {
  
   // States for registration
@@ -42,7 +41,7 @@ export function Login() {
         style={{
           display: submitted ? '' : 'none',
         }}>
-        <h1>User successfully registered!!</h1>
+        <h2 style={{color: "green"}}>User successfully registered!!</h2>
       </div>
     );
   };
@@ -55,14 +54,14 @@ export function Login() {
         style={{
           display: error ? '' : 'none',
         }}>
-        <h1>Please enter all the fields</h1>
+        <h2 style={{color: "red"}}>Please enter all the fields</h2>
       </div>
     );
   };
+  document.body.style = 'background: #E6E6FA;';
 
     return(
-        <div className="form" style={{ background: "blue", backgroundImage: 'sather', textAlign: "center", justifyContent: "center", verticalAlign: "baseline", verticalAlign: "middle"}}>
-            
+        <div className="form" style={{textAlign: "center", justifyContent: "center", verticalAlign: "baseline", verticalAlign: "middle"}}>
             <br />
             <br />
             <br />
@@ -79,11 +78,8 @@ export function Login() {
             <br />
             <br />
             <br />
-            
-            
-            
         <div>
-            <h1 style={{ textAlign: "center" }} >User Registration</h1>
+            <h1 style={{fontSize: "28px", fontStyle: "italic"}}>User Log In</h1>
             <br />
             <br />
             <br />
@@ -93,11 +89,11 @@ export function Login() {
         </div>
  
       {/* Calling to the methods */}
-      <div style={{ textAlign: "center"}} className="messages">
+      <div className="messages">
         {errorMessage()}
         {successMessage()}
       </div >
-            <form style={{ background: "blue", textAlign: "center" }} onSubmit={handleSubmit}> {/*Connect handleSubmit to form using onSubmit*/}
+            <form onSubmit={handleSubmit}> {/*Connect handleSubmit to form using onSubmit*/}
                 <label for="email">email</label>
                 <input value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="studentname@berkeley.edu" id="email" name="email" />
                 <br />
@@ -110,8 +106,8 @@ export function Login() {
 
                 </form>
                 <br />
-                <a style={{ textAlign: "center" }} href="http://127.0.0.1:5173/signup">
-                    <button style={{ textAlign: "center" }}>Click here if you have created an account</button>
+                <a href="http://127.0.0.1:5173/signup">
+                    <button>Click here if you want to create an account</button>
                  </a>
         </div>
     )

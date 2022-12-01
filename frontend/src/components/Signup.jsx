@@ -1,5 +1,4 @@
 import { useState } from 'react';
- 
 export function Signup() {
  
   // States for registration
@@ -42,7 +41,7 @@ export function Signup() {
         style={{
           display: submitted ? '' : 'none',
         }}>
-        <h1>User successfully registered!!</h1>
+        <h2 style={{color: "green"}}>User successfully registered!!</h2>
       </div>
     );
   };
@@ -55,42 +54,60 @@ export function Signup() {
         style={{
           display: error ? '' : 'none',
         }}>
-        <h1>Please enter all the fields</h1>
+        <h2 style={{color: "red"}}>Please enter all the fields</h2>
       </div>
     );
   };
- 
-  return (
-    <div className="form">
-      <div>
-        <h1>User Registration</h1>
-      </div>
+  document.body.style = 'background: #b5edf5;';
+    return(
+        <div className="form" style={{ backgroundImage: 'sather', textAlign: "center", justifyContent: "center", verticalAlign: "baseline", verticalAlign: "middle"}}>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        <div>
+            <h1 style={{fontSize: "28px", fontStyle: "italic"}}>User Registration</h1>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
  
       {/* Calling to the methods */}
       <div className="messages">
         {errorMessage()}
         {successMessage()}
-      </div>
- 
-      <form>
-        {/* Labels and inputs for form data */}
- 
-        <label className="label">Email</label>
-        <input onChange={handleEmail} className="input"
-          value={email} type="email" />
- 
-        <label className="label">Password</label>
-        <input onChange={handlePassword} className="input"
-          value={password} type="password" />
- 
-        <button onClick={handleSubmit} className="btn" type="submit">
-          Submit
-        </button>
+      </div >
+            <form onSubmit={handleSubmit}> {/*Connect handleSubmit to form using onSubmit*/}
+                <label for="email">email</label>
+                <input value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="studentname@berkeley.edu" id="email" name="email" />
+                <br />
+                <br />
+                <label for="password">password</label>
+                <input value={password} onChange={(e) => setPassword(e.target.value)}type="password" placeholder="******" id="password" name="password" />
+                <br />
+                <br />
+                <button type="submit">Sign Up</button> {/*triggers handleSubmit function when user presses on the submit button*/}
 
-      </form>
-      <a href="http://127.0.0.1:5173/login">
-            <button>Click here if you have created an account</button>
-        </a>
-    </div>
-  );
+                </form>
+                <br />
+                <a href="http://127.0.0.1:5173/">
+                    <button>Click here if you have created an account</button>
+                 </a>
+        </div>
+    )
 }
