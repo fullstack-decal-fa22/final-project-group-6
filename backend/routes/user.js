@@ -6,7 +6,7 @@ const auth = require("../middleware/auth");
 var router = express.Router();
 
 router.post("/signup", async (req, res) => {
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
   try {
     let user = await User.findOne({ email, });
     if (user) {
@@ -16,7 +16,6 @@ router.post("/signup", async (req, res) => {
     }
 
     user = new User({
-      username,
       email,
       password,
     });

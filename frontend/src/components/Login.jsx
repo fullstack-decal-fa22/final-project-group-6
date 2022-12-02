@@ -1,4 +1,10 @@
 import { useState } from 'react';
+import water from '../utils/waterfall.jpeg'
+
+function main() {
+	myWindow = window.open ('/success');
+}
+
 export function Login() {
  
   // States for registration
@@ -61,7 +67,8 @@ export function Login() {
   document.body.style = 'background: #E6E6FA;';
 
     return(
-        <div className="form" style={{textAlign: "center", justifyContent: "center", verticalAlign: "baseline", verticalAlign: "middle"}}>
+
+        <div className="form" style={{height: 770, backgroundImage: `url(${water})`,textAlign: "center", justifyContent: "center", verticalAlign: "baseline", verticalAlign: "middle"}}>
             <br />
             <br />
             <br />
@@ -75,30 +82,19 @@ export function Login() {
             <br />
             <br />
             <br />
-            <br />
-            <br />
-            <br />
-        <div>
-            <h1 style={{fontSize: "28px", fontStyle: "italic"}}>User Log In</h1>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-        </div>
+      <h1 style={{ color: "blueviolet", fontSize: "28px"}}>User Log In</h1>
  
       {/* Calling to the methods */}
       <div className="messages">
         {errorMessage()}
         {successMessage()}
       </div >
-            <form onSubmit={handleSubmit}> {/*Connect handleSubmit to form using onSubmit*/}
-                <label for="email">email</label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="studentname@berkeley.edu" id="email" name="email" />
+            <form style={{ color: "blueviolet", fontSize: "15px", textAlign: "center", justifyContent: "center", verticalAlign: "baseline", verticalAlign: "middle", marginLeft: "10"}} onSubmit={handleSubmit}> {/*Connect handleSubmit to form using onSubmit*/}
+                <label for="email">Edu Email:   </label>
+                <input color='blue' value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="studentname@berkeley.edu" id="email" name="email" />
                 <br />
                 <br />
-                <label for="password">password</label>
+                <label for="password">Password: </label>
                 <input value={password} onChange={(e) => setPassword(e.target.value)}type="password" placeholder="******" id="password" name="password" />
                 <br />
                 <br />

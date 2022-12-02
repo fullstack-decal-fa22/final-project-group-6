@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Background from '../utils/pokemon.png'
 export function Signup() {
  
   // States for registration
@@ -28,8 +29,13 @@ export function Signup() {
     if (email === '' || password === '') {
       setError(true);
     } else {
-      setSubmitted(true);
-      setError(false);
+
+    axios.post('/signup', { email, password })
+    .then ((response) => console.log(response))
+    .catch((error) => console.log(error));
+
+    setSubmitted(true);
+    login();
     }
   };
  
@@ -58,9 +64,14 @@ export function Signup() {
       </div>
     );
   };
+
+  const login = () => {
+    myWindow = window.open ('/login');
+  }
+
   document.body.style = 'background: #b5edf5;';
     return(
-        <div className="form" style={{ backgroundImage: 'sather', textAlign: "center", justifyContent: "center", verticalAlign: "baseline", verticalAlign: "middle"}}>
+      <div className="form" style={{height: 750, backgroundImage: `url(${Background})`,textAlign: "center", justifyContent: "center", verticalAlign: "baseline", verticalAlign: "middle"}}>
             <br />
             <br />
             <br />
@@ -74,39 +85,30 @@ export function Signup() {
             <br />
             <br />
             <br />
-            <br />
-            <br />
-            <br />
-        <div>
-            <h1 style={{fontSize: "28px", fontStyle: "italic"}}>User Registration</h1>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-        </div>
+      <h1 style={{ fontSize: "28px", fontStyle: "italic"}}>User Registration</h1>
  
       {/* Calling to the methods */}
       <div className="messages">
         {errorMessage()}
         {successMessage()}
       </div >
-            <form onSubmit={handleSubmit}> {/*Connect handleSubmit to form using onSubmit*/}
-                <label for="email">email</label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="studentname@berkeley.edu" id="email" name="email" />
+            <form onSubmit={handleSubmit} style={{ fontSize: "15px", textAlign: "center", justifyContent: "center", verticalAlign: "baseline", verticalAlign: "middle", marginLeft: "10"}} onSubmit={handleSubmit}> {/*Connect handleSubmit to form using onSubmit*/}
+                <label for="email">Edu Email:   </label>
+                <input color='blue' value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="studentname@berkeley.edu" id="email" name="email" />
                 <br />
                 <br />
-                <label for="password">password</label>
+                <label for="password">Password: </label>
                 <input value={password} onChange={(e) => setPassword(e.target.value)}type="password" placeholder="******" id="password" name="password" />
                 <br />
                 <br />
-                <button type="submit">Sign Up</button> {/*triggers handleSubmit function when user presses on the submit button*/}
+                <button type="submit" onClick={handleSubmit}>
+                  Sign Up
+                </button> {/*triggers handleSubmit function when user presses on the submit button*/}
 
                 </form>
                 <br />
                 <a href="http://127.0.0.1:5173/">
-                    <button>Click here if you have created an account</button>
+                    <button onClick={login}>Click here if you have created an account</button>
                  </a>
         </div>
     )
