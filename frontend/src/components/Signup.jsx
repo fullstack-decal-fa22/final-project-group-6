@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import Background from '../utils/pokemon.png'
+import Background from '../utils/signup-pokemon.jpeg'
+import myWindow from './Dashboard';
+import axios from 'axios';
+
 export function Signup() {
  
   // States for registration
@@ -26,18 +29,47 @@ export function Signup() {
   // Handling the form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email === '' || password === '') {
-      setError(true);
-    } else {
+    console.log("register attempt")
 
-    axios.post('/signup', { email, password })
-    .then ((response) => console.log(response))
-    .catch((error) => console.log(error));
-
-    setSubmitted(true);
-    login();
-    }
-  };
+    axios.post("http://localhost:4000/user/signup", {
+        password: password,
+        email: email
+    }).then((result) => {
+            if (result.data.message === "success") {
+                let id = result.data.id
+                console.log("Login success! Token: " + id);
+                successMessage();
+            } },(err) => {
+                console.log("Authentication failure");
+                errorMessage();
+                setError(true);
+                console.log(err)
+            }
+        )
+    // axios
+    //     .post('http://localhost:4000/user/signup', 
+    //     { 
+    //       email: {email},
+    //       password: {password}
+    //     })
+    //     .then(
+    //       (result) => {
+    //         if (result.data.message === "success") {
+    //           console.log("Event created successfully");
+    //           setSubmitted(true);
+    //           setError(false);
+    //         }
+    //       },
+    //       (err) => {
+    //         setSubmitted(false);
+    //         setError(true);
+    //         console.log(err)
+    //       }
+    //     )
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    };
  
   // Showing success message
   const successMessage = () => {
@@ -71,7 +103,7 @@ export function Signup() {
 
   document.body.style = 'background: #b5edf5;';
     return(
-      <div className="form" style={{height: 750, backgroundImage: `url(${Background})`,textAlign: "center", justifyContent: "center", verticalAlign: "baseline", verticalAlign: "middle"}}>
+      <div className="form" style={{height: 770, backgroundImage: `url(${Background})`,textAlign: "center", justifyContent: "center", verticalAlign: "baseline", verticalAlign: "middle"}}>
             <br />
             <br />
             <br />
@@ -81,20 +113,17 @@ export function Signup() {
             <br />
             <br />
             <br />
-            <br />
-            <br />
-            <br />
-            <br />
-      <h1 style={{ fontSize: "28px", fontStyle: "italic"}}>User Registration</h1>
+
+      <h1 style={{ fontSize: "28px", fontStyle: "bold"}}>User Registration</h1>
  
       {/* Calling to the methods */}
       <div className="messages">
         {errorMessage()}
         {successMessage()}
       </div >
-            <form onSubmit={handleSubmit} style={{ fontSize: "15px", textAlign: "center", justifyContent: "center", verticalAlign: "baseline", verticalAlign: "middle", marginLeft: "10"}} onSubmit={handleSubmit}> {/*Connect handleSubmit to form using onSubmit*/}
+            <form onSubmit={handleSubmit} style={{ fontStyle: "bold", fontSize: "17px", textAlign: "center", justifyContent: "center", verticalAlign: "baseline", verticalAlign: "middle", marginLeft: "10"}} onSubmit={handleSubmit}> {/*Connect handleSubmit to form using onSubmit*/}
                 <label for="email">Edu Email:   </label>
-                <input color='blue' value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="studentname@berkeley.edu" id="email" name="email" />
+                <input value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="studentname@berkeley.edu" id="email" name="email" />
                 <br />
                 <br />
                 <label for="password">Password: </label>

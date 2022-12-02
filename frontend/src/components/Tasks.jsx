@@ -23,6 +23,10 @@ export function Tasks(props) {
       isCompleted: false,
     };
 
+    // axios.post('/create', { inputValue })
+    // .then ((response) => console.log(response))
+    // .catch((error) => console.log(error));
+
     onTaskAdd(task);
     setInputValue("");
   }
@@ -49,22 +53,6 @@ export function Tasks(props) {
       >
         <BsPlus /> Add Task
       </button>
-      {/* <form
-        className="add_item_form_wrapper"
-        noValidate
-        onSubmit={handleAdd}
-      >
-        <button type="submit" className="submit_btn">
-          <BsPlus />
-        </button>
-        <input
-          className="add_item_field"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          type="text"
-          placeholder="Add Task"
-        />
-      </form> */}
     </ul>
   )
 }

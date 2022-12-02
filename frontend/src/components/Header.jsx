@@ -1,5 +1,10 @@
 import { GiHamburgerMenu } from 'react-icons/gi/';
 import { BsSearch, BsCheckCircleFill } from 'react-icons/bs';
+import myWindow from './Dashboard';
+
+const login = () => {
+  myWindow = window.open ('/login');
+}
 
 export function Header(props) {
   const { tasksTotal, tasksCompleted, onToggle, onSearch, searchValue } = props;
@@ -24,10 +29,9 @@ export function Header(props) {
         </div>
       </div>
       <div className="right-menu-container">
-        <BsCheckCircleFill className="tick-icon" />
-        <span className="completed">
-          {tasksTotal}/{tasksCompleted}
-        </span>
+        <button onClick={login} style={{backgroundColor: "pink"}}>
+          Log Out
+        </button>
       </div>
     </div>
   )

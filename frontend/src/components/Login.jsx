@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import water from '../utils/waterfall.jpeg'
+import water from '../utils/waterfall.jpeg';
+import myWindow from './Dashboard';
+import axios from 'axios';
 
 function main() {
 	myWindow = window.open ('/success');
@@ -33,10 +35,30 @@ export function Login() {
     e.preventDefault();
     if (email === '' || password === '') {
       setError(true);
-    } else {
-      setSubmitted(true);
-      setError(false);
-    }
+    } else { 
+    // axios.post('/user/login', { email, password })
+    // .then ((res) => main)
+    // .catch((error) => setError(true));
+    axios.post("http://localhost:4000/user/login", {
+        password: password,
+        email: email
+    }).then((result) => {
+            if (result.data.message === "success") {
+                let id = result.data.id
+                console.log("Registered success in! Token: ");
+                successMessage();
+            } else {
+                console.log("Did not register");
+                errorMessage();
+                setError(true);
+            }},(err) => {
+                console.log("Did not register");
+                errorMessage();
+                setError(true);
+                console.log(err)
+            }
+        )
+    } 
   };
  
   // Showing success message
@@ -60,7 +82,7 @@ export function Login() {
         style={{
           display: error ? '' : 'none',
         }}>
-        <h2 style={{color: "red"}}>Please enter all the fields</h2>
+        <h2 style={{color: "red"}}>Invalid Account</h2>
       </div>
     );
   };
@@ -91,7 +113,7 @@ export function Login() {
       </div >
             <form style={{ color: "blueviolet", fontSize: "15px", textAlign: "center", justifyContent: "center", verticalAlign: "baseline", verticalAlign: "middle", marginLeft: "10"}} onSubmit={handleSubmit}> {/*Connect handleSubmit to form using onSubmit*/}
                 <label for="email">Edu Email:   </label>
-                <input color='blue' value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="studentname@berkeley.edu" id="email" name="email" />
+                <input value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="studentname@berkeley.edu" id="email" name="email" />
                 <br />
                 <br />
                 <label for="password">Password: </label>
@@ -104,7 +126,7 @@ export function Login() {
                 <br />
                 <a href="http://127.0.0.1:5173/signup">
                     <button>Click here if you want to create an account</button>
-                 </a>
+                </a>
         </div>
     )
 }

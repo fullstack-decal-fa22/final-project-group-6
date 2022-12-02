@@ -5,7 +5,7 @@ import pokemon from '../utils/pokemon.jpeg'
 var myWindow;
 
 function signup() {
-	myWindow = window.open ('/signup');
+	myWindow = window.open ('/login');
 }
 
 export function Dashboard() {
