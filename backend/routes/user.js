@@ -9,37 +9,39 @@ router.post("/signup", async (req, res) => {
   const { email, password } = req.body;
   try {
     let user = await User.findOne({ email, });
+    console.log(user)
     if (user) {
-      res.status(400).json({error: err})
+      res.status(400).json({error: "User already exists"})
+    } else {
+
+      user = new User({
+        email,
+        password,
+      });
+
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(password, salt);
+      await user.save();
+
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
+
+      jwt.sign(
+        payload,
+        "randomString",
+        {
+          expiresIn: 10000,
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.status(200)
+            .json({message: "success", id: token});
+        }
+      );
     }
-
-    user = new User({
-      email,
-      password,
-    });
-
-    const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(password, salt);
-    await user.save();
-
-    const payload = {
-      user: {
-        id: user.id,
-      },
-    };
-
-    jwt.sign(
-      payload,
-      "randomString",
-      {
-        expiresIn: 10000,
-      },
-      (err, token) => {
-        if (err) throw err;
-        res.status(200)
-          .json({message: "success", id: token});
-      }
-    );
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Error in saving");

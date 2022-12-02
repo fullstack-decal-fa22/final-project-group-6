@@ -31,6 +31,9 @@ export function Dashboard() {
             <Box width="45%" opacity="0" fontSize="1.3rem">
                 Make your voice heard about restoring the Roadless Rule protection in the Tongass National Forest.    
             </Box>
+            <Box width="45%" opacity="0" fontSize="1.3rem">
+                Make your voice heard about restoring the Roadless Rule protection in the Tongass National Forest.    
+            </Box>
 
             <Box w="100%" textAlign="center" mt={10}>
                 <Box w="200px" h="50px" mx={5} rounded="xl" variant="solid" fontWeight={700}>

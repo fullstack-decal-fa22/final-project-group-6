@@ -43,14 +43,11 @@ export function Login() {
         password: password,
         email: email
     }).then((result) => {
-            if (result.data.message === "success") {
+            if (result.data.message === "success") { 
                 let id = result.data.id
-                console.log("Registered success in! Token: ");
+                console.log("Registered success in! Token: " + id);
+                main();
                 successMessage();
-            } else {
-                console.log("Did not register");
-                errorMessage();
-                setError(true);
             }},(err) => {
                 console.log("Did not register");
                 errorMessage();
