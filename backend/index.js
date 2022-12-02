@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const InitiateMongoServer = require("./config/db");
 
 const user = require("./routes/users");
+const notes = require("./routes/notes");
 
 InitiateMongoServer();
 
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", user);
+app.use("/notes", notes);
 
 app.listen(PORT, (req, res) => {
   console.log(`Server started at PORT ${PORT}`);

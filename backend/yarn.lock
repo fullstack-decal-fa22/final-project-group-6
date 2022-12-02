@@ -1322,10 +1322,10 @@
     "@aws-sdk/credential-providers" "^3.186.0"
     "saslprep" "^1.0.3"
 
-"mongoose@^6.7.3":
-  "integrity" "sha512-bLC2Pt6Vpoov+1kBYvQgJXG/2DWXbfIvfK4Gh68kCdYGh6CVO31YxYuIGz70hyGwX2g4DmSzbs5IA8Px2neMCQ=="
-  "resolved" "https://registry.npmjs.org/mongoose/-/mongoose-6.7.3.tgz"
-  "version" "6.7.3"
+"mongoose@^6.7.5":
+  "integrity" "sha512-3ppxBxDUIoQKYISVpAg7hjmV1lkGBN3tN9AkQr1Vqc68L5k+Bo+uyfOhpbCFpCf5JZLcEO4cmuB5YX+d9h3plw=="
+  "resolved" "https://registry.npmjs.org/mongoose/-/mongoose-6.7.5.tgz"
+  "version" "6.7.5"
   dependencies:
     "bson" "^4.7.0"
     "kareem" "2.4.1"
